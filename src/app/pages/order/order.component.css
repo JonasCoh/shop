@@ -1,0 +1,14 @@
+aside{
+    padding: 10px;
+}
+
+.cartPrice{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.link{
+    color: rgb(16, 101, 212);
+  }

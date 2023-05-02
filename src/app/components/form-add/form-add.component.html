@@ -1,0 +1,19 @@
+<form #productAdd="ngForm" [formGroup]="addProduct">
+
+
+    <label>Product Name:</label>
+    <input type="text" class="form-control w-auto" [formControl]="productName"/>
+    
+    <label>Category:</label>
+    <select [formControl]="category" class="form-select w-auto d-block" >
+        <option *ngFor="let category of categories">{{category.categoryName}}</option>
+    </select>
+    
+    <label>Price:</label>
+    <input type="number" class="form-control w-auto" [formControl]="price"/>
+    
+    <label>image:</label>
+    <input type="file" class="w-auto form-control" [formControl]="image"  (change)="uploadFile($event)"/>
+    
+    <button [disabled]="productAdd.form.invalid" class="btn btn-primary m-2" (click)="sendProductToServer()">Add Product</button>
+</form>

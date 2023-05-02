@@ -1,0 +1,30 @@
+.layout{
+margin: 20px;
+border: 2px solid black;
+border-radius: 20px;
+height: 80vh;
+width: 80wh;
+display: grid;
+grid-template-columns: repeat(auto-fit,1fr);
+grid-template-rows: repeat(auto-fit,1fr);
+}
+
+aside {
+    padding: 20px;
+}
+
+main {
+    grid-row:7 span;
+    grid-column: auto;
+}
+
+.supermarketTitle{
+    text-align: center;
+}
+
+.supermarketOffer{
+    position: relative;
+    top:50%;
+    text-align: center;
+}
+

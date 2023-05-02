@@ -1,0 +1,26 @@
+<form #updateproduct="ngForm" [formGroup]="updateProduct" >
+
+    <label>Product Name:</label>
+    <input type="text" placeholder="Enter Product Name" [formControl]="productName" class="form-control"/>
+    <label>Product id:</label>
+    <input type="number"   [formControl]="id" class="form-control" />
+    <label>Product Price:</label>
+    <input type="number" placeholder="Enter Price"  [formControl]="price" class="form-control" />
+    <label>Picture:</label>
+    <input type="file" placeholder="Enter Product Image" class="form-control" (change)="uploadFile($event)"/>
+
+    <label>Category</label>
+    <select [formControl]="categoryName" class="form-select w-auto d-block">
+        <option *ngFor ="let category of categories"  >{{category.categoryName}}</option>
+    </select>
+
+    <button class="btn btn-success" [disabled] = "updateproduct.form.invalid" (click)="formUpdate()">Update</button>
+
+</form>
+
+
+
+
+
+
+

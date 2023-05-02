@@ -1,0 +1,40 @@
+<div>
+  <app-search-product (searchProducts)="getSearchProduct($event)" ></app-search-product>
+</div>
+
+<div class="row">
+  
+  <aside class="col-lg-3 col-md-3 col-sm-7" >
+    <button *ngIf="cartService.cartProductFront.length" class="btn btn-danger m-2" (click)="deleteProductCart()">DELETE CART</button>
+    <app-product-list ></app-product-list>
+    <div class="cartPrice" *ngIf="cartService.cartProductFront.length">
+      <app-cart-price ></app-cart-price>
+      <a routerLinkActive="router-link-active" (click)="orderPage()" class="link">Order</a>
+    </div>
+    
+  </aside>
+
+  <main class="col-lg-9 col-md-9 col-sm-5">
+    <header>
+      <app-categories-nav></app-categories-nav>
+    </header>
+
+    <div class="productContainer">
+      <ng-container
+        *ngFor="
+          let product of productsService.products
+            | category: productsService.productsCategory
+        "
+      >
+        <app-product-card
+          (click)="showProductOnModal(product)"
+          [product]="product"
+          data-toggle="modal"
+          data-target="#staticBackdrop"
+        ></app-product-card>
+      </ng-container>
+
+      <app-product-modal></app-product-modal>
+    </div>
+  </main>
+</div>

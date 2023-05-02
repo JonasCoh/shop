@@ -1,0 +1,28 @@
+<h3>Order</h3>
+
+<h4>Shipping Details: </h4>
+
+<app-alert *ngIf="error !==''" [error]="error"></app-alert>
+
+<form #orderPage="ngForm" [formGroup]="orderForm">
+    
+    <div class="alert alert-info" role="alert" *ngIf="orderPage.form.invalid" >
+        <div *ngIf="shippingDate.errors?.required">
+            please insert shipdate
+        </div>
+        <div *ngIf="creditCard.errors?.required || creditCard.errors?.pattern">
+            we get only master card 
+        </div>
+    </div>
+
+    <label>City:</label>
+    <input type="text" [formControl]="city" class="form-control w-auto"/>
+    <label>Street:</label>
+    <input type="text" [formControl]="address" class="form-control w-auto">
+    <label>Shipping Date:</label>
+    <input type="date" [formControl]="shippingDate" class="form-control w-auto"/>
+
+    <label>Payments:</label>
+    <input type="number" [formControl]="creditCard" class="form-control w-auto">
+    <button [disabled] = "orderPage.form.invalid" (click)="makeOrder()" class="btn btn-primary"> Order</button>
+</form>

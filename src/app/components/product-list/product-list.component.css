@@ -1,0 +1,5 @@
+.product-list{
+    padding: 10px;
+    height: 70vh;
+    overflow-y: auto;
+  }

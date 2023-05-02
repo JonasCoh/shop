@@ -1,0 +1,10 @@
+<div
+  *ngIf="cartProductService.cartProductFront.length > 0"
+  class="product-list"
+>
+  <ul *ngFor="let productFromCart of cartProductService.cartProductFront" class="list-group mt-3">
+    <app-product-cart-card
+      [productFront]="productFromCart"
+    ></app-product-cart-card>
+  </ul>
+</div>

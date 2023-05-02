@@ -1,0 +1,31 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-backdrop="static"
+  data-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">{{productService.productShowModal?.productName}}</h5>
+        <button id="btnClose" type="button" class="btn-close" data-dismiss="modal" aria-label="Close" ></button>
+      </div>
+      <div class="modal-body">
+        <img [src]="productService.productShowModal?.image" height="100px" width="100px" class="d-block"/>
+        <form>
+          <label>Product unit</label>
+          <input type="number" class="form-control w-auto" [(ngModel)]="capacity" name="capacity" id="defaultCapacity" />
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveCapacity()">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

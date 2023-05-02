@@ -1,0 +1,20 @@
+<div>
+    <app-search-product (colorOrder)="colorOrder($event)" ></app-search-product>
+  </div>
+  
+  <div class="row">
+    
+    <aside class="col-lg-3 col-md-3 col-sm-7" >
+      <app-product-list  ></app-product-list>
+      <div class="cartPrice" *ngIf="cartService.cartProductFront.length">
+        <app-cart-price ></app-cart-price>
+        <a routerLinkActive="router-link-active" (click)="backToShop()" class="link" >Back To Shop 🔙 </a>
+      </div>
+      
+    </aside>  
+  
+    <main class="col-lg-9 col-md-9 col-sm-5">
+      <app-form-order></app-form-order>
+    </main>
+  </div>
+  

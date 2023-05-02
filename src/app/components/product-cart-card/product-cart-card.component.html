@@ -1,0 +1,19 @@
+<li class="list-group-item" style="margin-top: 20px" [ngStyle]="{'background-color':productFront.backgroundColor}">
+  <div class="d-flex" >
+    <div class="d-flex">
+      <button *ngIf= "router.url === '/products/user'" id="btnClose" type="button" class="btn-close" aria-label="Close" style="float: right" (click)="deleteFromCart()"></button>
+      
+      <img [src]="productFront.image" height="200" width="200" alt="cart product" />
+    
+    </div>
+    <div>
+      <div class="card-body">
+        <h5 class="card-title"   >{{ productFront.productName }}</h5>
+        <p class="card-text">capacity: {{ productFront.capacity }}</p>
+        <p class="card-text">
+          price: {{ productFront.price | currency: "ILS" }}
+        </p>
+      </div>
+    </div>
+  </div>
+</li>

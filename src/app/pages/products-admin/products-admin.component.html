@@ -1,0 +1,20 @@
+<div class="layout">
+  <aside>
+    <router-outlet></router-outlet>
+  </aside>
+  
+  <main>
+    <header>
+      <app-categories-nav></app-categories-nav>
+    </header>  
+      <div class="productContainer">
+        
+        <ng-container *ngFor="let product of productsService.products |category:productsService.productsCategory">
+        
+          <app-product-card [product]="product"  (click)="updateProduct(product)"></app-product-card>
+        
+        </ng-container>
+      </div>
+    <button class="addProduct btn btn-success" (click)="addProduct()">+</button>
+  </main>
+</div>

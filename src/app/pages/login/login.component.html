@@ -1,0 +1,28 @@
+<div class="container">
+
+    <app-alert [error]="error" *ngIf="error !== '' "></app-alert>
+<div class="layout">
+    <aside> 
+
+  <form #loginForm ="ngForm" [formGroup]="loginUser" >
+    
+    <label>User Name</label>
+    <input type = "email" class = "form-control w-auto" placeholder = "enter your email" [formControl] = "userName"
+    />
+    <label>password</label>
+    <input type = "password"  class = "form-control w-auto" placeholder = "enter your password" [formControl] = "password"
+    />
+    <button [disabled]="loginForm.form.invalid" class="btn btn-primary m-2" (click)="login()">Login✍️</button>
+    <a [routerLink]="['/register']" routerLinkActive="router-link-active" >Sign up</a>
+
+  </form>
+
+  </aside>
+  <main>
+      <div class="supermarketTitle">
+          Welcome to our supermarket the best cheap and offer store in the country !!
+      </div>
+      <div class="supermarketOffer">we have {{productsInStore}} products in our Super-Market and we made {{ordersInStore}} orders</div>
+  </main>
+</div>
+</div>

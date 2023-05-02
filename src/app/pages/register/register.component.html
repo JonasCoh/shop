@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Register Page Step 1</h1>
+
+  <form #loginForm="ngForm" [formGroup]="registerFirstStep">
+    <div class="alert alert-info" role="alert" *ngIf="loginForm.form.invalid">
+      <p *ngIf="identity.errors?.required || identity.errors?.pattern">
+         Insert your identify
+      </p>
+      <p *ngIf="userName.errors?.required || userName.errors?.pattern">
+        Insert your email
+      </p>
+
+      <p
+        *ngIf="
+          password.errors?.required ||
+          password.errors?.minlength ||
+          password.errors?.maxlength
+        "
+      >
+        Your password should be between 8-12 characters !
+      </p>
+      <p
+        *ngIf="
+          conformPassword.value !== password.value ||
+          conformPassword.errors?.required ||
+          conformPassword.errors?.maxlength ||
+          conformPassword.errors?.minlength
+        "
+      >
+        please check you conform the password good
+      </p>
+      
+    </div>
+
+    <label>Identify</label>
+    <input type="number" placeholder="Enter your identity" class="form-control w-auto" [formControl]="identity"/>
+
+    <label>User Name</label>
+    <input type="email" placeholder="Enter your email" class="form-control w-auto" [formControl]="userName"/>
+
+    <label>Password</label>
+    <input type="password" placeholder="Enter a password" class="form-control w-auto" [formControl]="password"/>
+
+    <label>Password Confirm</label>
+    <input type="password" placeholder="Confirm your password" class="form-control w-auto" [formControl]="conformPassword" />
+
+    <button [disabled]="loginForm.form.invalid" class="btn btn-primary m-2" (click)="registerStepOne()">
+      Next Step
+    </button>
+  </form>
+
+  <div *ngIf="errorFromHttpRequest != ''">
+    <app-alert [error]="errorFromHttpRequest"></app-alert>
+  </div>
+</div>
