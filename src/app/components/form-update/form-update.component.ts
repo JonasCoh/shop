@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GetProduct } from 'src/app/models/GetProduct';
 import { categories } from 'src/app/data/categories';
 import { ProductsService } from 'src/app/services/productService/products.service';
-import { ICategory } from 'src/app/models/category.model';
+import { CategoryModel } from 'src/app/models/category.model';
 import { Location } from '@angular/common';
 import { PostProduct } from 'src/app/models/PostProduct';
 import { PutProduct } from 'src/app/models/PutProduct';
@@ -24,7 +24,7 @@ export class FormUpdateComponent implements OnInit {
   public image: string;
   public categoryName!: FormControl;
   public formData: FormData = new FormData();
-  public categories: ICategory[] = categories;
+  public categories: CategoryModel[] = categories;
   public file!: File;
 
   constructor(public productService: ProductsService, public router: Location) {
@@ -72,7 +72,7 @@ export class FormUpdateComponent implements OnInit {
 
 
   getCategoryId() {
-    return this.categories.find((category: ICategory) => category.categoryName === this.categoryName.value)!.categoryId
+    return this.categories.find((category: CategoryModel) => category.categoryName === this.categoryName.value)!.categoryID
   }
 
 

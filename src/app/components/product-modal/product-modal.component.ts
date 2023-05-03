@@ -29,11 +29,23 @@ export class ProductModalComponent implements OnInit {
   }
 
   saveCapacity() {
-    //product id ,price  from the productService capacity from input cartid from cartProduct service   
+    //product id ,price  from the productService capacity from input cartid from cartProduct service
     if (this.capacity >= "1") {
       const { id, price,productName,image } = this.productService.productShowModal
-      const cartProduct = new CartProductPost(id, this.capacity, price, this.cartService.userCartId.id);
-      const productFront:CartProductFront = new CartProductFront(id,productName,this.capacity,price * Number(this.capacity),image,this.cartService.userCartId.id)
+      const cartProduct = new CartProductPost({
+        id,
+        capacity:this.capacity,
+        price:price,
+        cartId:this.cartService.userCartId.id
+      });
+      const productFront:CartProductFront = new CartProductFront({
+        productId:id,
+        productName:productName,
+        capacity:this.capacity,
+        price:price * Number(this.capacity),
+        image:image,
+        cartId:this.cartService.userCartId.id
+      })
       const observable = this.cartService.postProductToCart(cartProduct);
       observable.subscribe((HttpResultData) => {
         console.log(HttpResultData)

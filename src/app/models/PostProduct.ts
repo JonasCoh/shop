@@ -1,6 +1,6 @@
 import { ProductCategory } from "./ProductCategory";
 
- class PostProduct {
+ export class PostProduct {
 
     public productName:string;
     public categoryId:ProductCategory;
@@ -13,4 +13,3 @@ import { ProductCategory } from "./ProductCategory";
         this.price = postproduct.price
     }
 }
-export default PostProduct;

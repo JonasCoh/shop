@@ -1,4 +1,4 @@
-class CategoryModel {
+export class CategoryModel {
 
     public categoryID: number;
     public categoryName: string;
@@ -10,4 +10,3 @@ class CategoryModel {
 
 }
 
-export default CategoryModel;

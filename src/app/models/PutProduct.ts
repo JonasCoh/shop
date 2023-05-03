@@ -1,6 +1,6 @@
 import { ProductCategory } from "./ProductCategory";
 
-class PutProduct {
+export class PutProduct {
 
     public id: number;
     public productName:string;
@@ -17,5 +17,3 @@ class PutProduct {
         this.image =putproduct.image;
      }
 }
-
-export default PutProduct;

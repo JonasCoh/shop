@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { categories } from 'src/app/data/categories';
 import { CartProductFront } from 'src/app/models/CartProductFront.model';
-import { ICategory } from 'src/app/models/category.model';
+import { CategoryModel } from 'src/app/models/category.model';
 import { GetProduct } from 'src/app/models/GetProduct';
 import { CartProductService } from 'src/app/services/cartproductService/cart-product.service';
 import { ProductsService } from 'src/app/services/productService/products.service';
@@ -14,7 +14,7 @@ import { ProductsService } from 'src/app/services/productService/products.servic
 })
 export class ProductsUserComponent implements OnInit {
 
-  public categories: ICategory[] = categories;
+  public categories: CategoryModel[] = categories;
 
 
   constructor(public productsService: ProductsService, public router: Router, public cartService: CartProductService) { }
@@ -56,7 +56,8 @@ export class ProductsUserComponent implements OnInit {
   }
 
   clearFrontColor() {
-    this.cartService.cartProductFront.forEach((element: CartProductFront) => element.backgroundColor = "white")
+    // THIS IS NOT HTML this is invalid
+    // this.cartService.cartProductFront.forEach((element: CartProductFront) => element.backgroundColor = "white")
   }
 
   orderPage() {

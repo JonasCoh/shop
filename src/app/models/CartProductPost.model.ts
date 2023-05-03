@@ -1,4 +1,4 @@
- class CartProductPost{
+export class CartProductPost{
     public id :number ;
      public capacity:string;
      public price :number;
@@ -11,5 +11,3 @@ public constructor( cartproductpost:CartProductPost){
     this.cartId = cartproductpost.price
 }
 }
-
-export default CartProductPost;

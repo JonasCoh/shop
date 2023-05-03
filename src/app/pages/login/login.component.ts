@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { observable } from 'rxjs';
-import { UserLogin } from 'src/app/models/credentials.model';
+import { CredentialsModel } from 'src/app/models/credentials.model';
 import { MarketService } from 'src/app/services/marketService/market.service';
 import { UserService } from 'src/app/services/userService/user.service';
 
@@ -38,15 +38,18 @@ export class LoginComponent implements OnInit {
       console.log(HttpResponseError)
     })
 
-    
+
 
 
   }
 
   login(){
-    const user = new UserLogin(this.userName.value,this.password.value)
+    const user = new CredentialsModel({
+      userName:this.userName.value,
+      password:this.password.value
+    })
     console.log(user)
-    const observable = this.userOperation.userLogin(user)
+    const observable = this.userOperation.authenticateUser(user)
 
     observable.subscribe((httpResponseData:any)=>{
       this.error ="";
@@ -57,7 +60,7 @@ export class LoginComponent implements OnInit {
       }else {
         this.router.navigate(["/products/admin"])
       }
-      
+
     },(httpResponseError)=>{
       this.error = httpResponseError.error.error;
     })

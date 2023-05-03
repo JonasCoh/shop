@@ -33,7 +33,12 @@ export class RegisterTwoComponent implements OnInit {
   }
 
   userRegister() {
-    this.userRegisterService.userRegistrationSecondStep = new SecondRegistration(this.firstName.value, this.lastName.value, this.city.value, this.street.value)
+    this.userRegisterService.userRegistrationSecondStep = new SecondRegistration({
+      firstName:this.firstName.value,
+      lastName:this.lastName.value,
+      city:this.city.value,
+      street:this.street.value
+    })
 
     const obsravable = this.userRegisterService.secondRegisterStep()
 

@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-  
+
   <aside class="col-lg-3 col-md-3 col-sm-7" >
     <button *ngIf="cartService.cartProductFront.length" class="btn btn-danger m-2" (click)="deleteProductCart()">DELETE CART</button>
     <app-product-list ></app-product-list>
@@ -11,7 +11,7 @@
       <app-cart-price ></app-cart-price>
       <a routerLinkActive="router-link-active" (click)="orderPage()" class="link">Order</a>
     </div>
-    
+
   </aside>
 
   <main class="col-lg-9 col-md-9 col-sm-5">

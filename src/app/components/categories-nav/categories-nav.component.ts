@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { categories } from 'src/app/data/categories'; 
-import { ICategory } from 'src/app/models/category.model';
+import { categories } from 'src/app/data/categories';
+import { CategoryModel } from 'src/app/models/category.model';
 import { ProductsService } from 'src/app/services/productService/products.service';
 @Component({
   selector: 'app-categories-nav',
@@ -9,7 +9,7 @@ import { ProductsService } from 'src/app/services/productService/products.servic
 })
 export class CategoriesNavComponent implements OnInit {
 
-  public categories:ICategory[] = categories
+  public categories:CategoryModel[] = categories
   constructor(public productsService:ProductsService) { }
 
   ngOnInit(): void {

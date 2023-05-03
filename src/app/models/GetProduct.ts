@@ -1,11 +1,11 @@
- class GetProduct {
+export class GetProduct {
 
     public id: number;
     public productName: string;
     public price: number;
-     public image: string;
-      public categoryName: string;
-      
+    public image: string;
+    public categoryName: string;
+
     constructor(getproduct : GetProduct) {
 
         this.id = getproduct.id;
@@ -15,4 +15,3 @@
         this.categoryName = getproduct.categoryName
          }
 }
-export default GetProduct;

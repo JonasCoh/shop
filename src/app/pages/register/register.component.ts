@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   public identity: FormControl;
   public conformPassword: FormControl;
   public errorFromHttpRequest: string = "";
-    
+
 
   constructor(public userRegisterService: UserService, public router: Router) {
     this.userName = new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*")])
@@ -36,9 +36,14 @@ export class RegisterComponent implements OnInit {
 
   registerStepOne() {
 
-    this.userRegisterService.userRegisterFirstStep =new FirstRegistration(this.identity.value, this.userName.value, this.password.value)
-    const obsorvobale = this.userRegisterService.firstRegisterStep();
-    obsorvobale.subscribe(httpResponseData => {
+    this.userRegisterService.userRegisterFirstStep =new FirstRegistration({
+      identity:this.identity.value,
+      userName:this.userName.value,
+      password:this.password.value
+    })
+
+    this.userRegisterService.firstRegisterStep(this.userName)
+    .subscribe(httpResponseData => {
       this.errorFromHttpRequest = ""
       this.router.navigate(["register/2"])
     }, httpResponseError => {

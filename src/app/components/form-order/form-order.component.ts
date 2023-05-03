@@ -26,7 +26,7 @@ export class FormOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.initilizedForm()
-    
+
   }
 
   async initilizedForm() {
@@ -41,7 +41,7 @@ export class FormOrderComponent implements OnInit {
       this.city.disable()
       this.address.disable()
       this.orderForm = new FormGroup({ address: this.address, city: this.city, shippingDate: this.shippingDate, creditCard: this.creditCard })
-    
+
     } catch (e) {
       console.log(e)
     }
@@ -57,9 +57,17 @@ export class FormOrderComponent implements OnInit {
 
   makeOrder() {
     const userCartId = this.cartService.userCartId.id;
-    const fourDigitCreditCard = this.creditCard.value.toString().slice(-4);    
-    const order: OrderPost = new OrderPost(this.identity, userCartId, this.cartService.cartPriceTotal, this.city.value, this.address.value, this.shippingDate.value,fourDigitCreditCard);
-    
+    const fourDigitCreditCard = this.creditCard.value.toString().slice(-4);
+    const order: OrderPost = new OrderPost({
+      id:userCartId,
+      identity:this.identity,
+      cartPriceTotal:this.cartService.cartPriceTotal,
+      city:this.city.value,
+      address:this.address.value,
+      shippingDate:this.shippingDate.value,
+      creditCard:fourDigitCreditCard
+    });
+
     const observable = this.orderService.makeOrder(order)
 
     observable.subscribe((HttpResponseData)=>{

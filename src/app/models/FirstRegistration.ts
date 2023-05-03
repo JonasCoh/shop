@@ -1,4 +1,4 @@
- class FirstRegistration {
+ export class FirstRegistration {
     public identity: string;
      public userName: string;
       public password: string;
@@ -11,4 +11,3 @@
 
 
 }
-export default FirstRegistration;

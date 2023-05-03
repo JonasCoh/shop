@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { observable } from 'rxjs';
 import { categories } from 'src/app/data/categories';
-import { ICategory } from 'src/app/models/category.model';
+import { CategoryModel } from 'src/app/models/category.model';
 import { GetProduct } from 'src/app/models/GetProduct';
 import { PostProduct } from 'src/app/models/PostProduct';
 import { ProductCategory } from 'src/app/models/ProductCategory';
@@ -23,9 +23,9 @@ export class FormAddComponent implements OnInit {
   public price!: FormControl;
   public image!: FormControl;
   public formData: FormData = new FormData();
-  public categories: ICategory[] = categories;
+  public categories: CategoryModel[] = categories;
   public file!: File;
-  
+
   constructor(public productService: ProductsService,public router:Location) {
     this.productName = new FormControl("", [Validators.required]);
     this.category = new FormControl(categories[0].categoryName);
@@ -40,10 +40,14 @@ export class FormAddComponent implements OnInit {
 
   sendProductToServer() {
     const categoryId:ProductCategory = this.getCtegoryId();
-    const sendProduct:PostProduct = new PostProduct(this.productName.value,categoryId,this.price.value)
+    const sendProduct:PostProduct = new PostProduct({
+      productName:this.productName.value,
+      categoryId:categoryId,
+      price:this.price.value
+    })
     const {products} = this.productService
     const copyProducts = [...products];
-    
+
     this.formData.append("productImage",this.file,this.file.name)
     this.formData.append("productName",sendProduct.productName);
     this.formData.append("categoryId",sendProduct.categoryId.toString());
@@ -52,7 +56,13 @@ export class FormAddComponent implements OnInit {
     const observable = this.productService.addProduct(this.formData)
 
     observable.subscribe((HttpResponseData)=>{
-      const product = new GetProduct(products[products.length -1].id+1,this.productName.value,this.price.value,HttpResponseData.image,this.category.value);
+      const product = new GetProduct({
+        id:products[products.length -1].id+1,
+        productName:this.productName.value,
+        price:this.price.value,
+        image:HttpResponseData.image,
+        categoryName:this.category.value
+      });
       copyProducts.push(product);
       this.productService.products = copyProducts;
       this.router.back()
@@ -63,11 +73,11 @@ export class FormAddComponent implements OnInit {
 
   uploadFile(e: any) {
     this.file = e.target.files[0]
-    
+
   }
 
   getCtegoryId():ProductCategory{
-    const category:ICategory= categories.find((category:ICategory)=>category.categoryName === this.category.value) as ICategory;
-    return category.categoryId
+    const category:CategoryModel= categories.find((category:CategoryModel)=>category.categoryName === this.category.value) as CategoryModel;
+    return category.categoryID
   }
 }
