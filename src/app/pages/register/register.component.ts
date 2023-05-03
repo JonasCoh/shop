@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirstRegistration } from 'src/app/models/FirstRegistration';
 import {  UserService } from 'src/app/services/userService/user.service';
@@ -13,20 +13,20 @@ import {  UserService } from 'src/app/services/userService/user.service';
 export class RegisterComponent implements OnInit {
 
 
-  public registerFirstStep: FormGroup;
-  public userName: FormControl;
-  public password: FormControl;
-  public identity: FormControl;
-  public conformPassword: FormControl;
+  public registerFirstStep: UntypedFormGroup;
+  public userName: UntypedFormControl;
+  public password: UntypedFormControl;
+  public identity: UntypedFormControl;
+  public conformPassword: UntypedFormControl;
   public errorFromHttpRequest: string = "";
 
 
   constructor(public userRegisterService: UserService, public router: Router) {
-    this.userName = new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*")])
-    this.identity = new FormControl("", [Validators.required, Validators.pattern("[0-9]{9}")])
-    this.password = new FormControl("", [Validators.minLength(8), Validators.maxLength(12), Validators.required])
-    this.conformPassword = new FormControl("", [Validators.minLength(8), Validators.maxLength(12), Validators.required,])
-    this.registerFirstStep = new FormGroup({ userName: this.userName, password: this.password, identity: this.identity, conformPassword: this.conformPassword })
+    this.userName = new UntypedFormControl("", [Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*")])
+    this.identity = new UntypedFormControl("", [Validators.required, Validators.pattern("[0-9]{9}")])
+    this.password = new UntypedFormControl("", [Validators.minLength(8), Validators.maxLength(12), Validators.required])
+    this.conformPassword = new UntypedFormControl("", [Validators.minLength(8), Validators.maxLength(12), Validators.required,])
+    this.registerFirstStep = new UntypedFormGroup({ userName: this.userName, password: this.password, identity: this.identity, conformPassword: this.conformPassword })
   }
 
   ngOnInit(): void {

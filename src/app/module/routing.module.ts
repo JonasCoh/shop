@@ -20,7 +20,10 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "register/2", component: RegisterTwoComponent },
   { path: "products/user", component: ProductsUserComponent },
-  { path: "products/admin", loadChildren: "./admin.module#AdminModule" },
+  {
+    path: "products/admin",
+    loadChildren:() => import("../module/admin.module").then(m=>m.AdminModule)
+  },
   { path: "order/user", component: OrderComponent },
   { path: "login", component: LoginComponent },
   { path: "order/user/successful", component: SuccessfulOrderComponent },

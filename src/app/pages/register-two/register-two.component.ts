@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SecondRegistration } from 'src/app/models/SecondRegistration';
 import { UserService } from 'src/app/services/userService/user.service';
@@ -13,19 +13,19 @@ import { UserService } from 'src/app/services/userService/user.service';
 export class RegisterTwoComponent implements OnInit {
 
   public tenBigCities: string[] = ["", "Jerusalem", "Tel Aviv", "Haifa", "Petah Tikva", "Rishon Lezion", "Ashdod", "Netanya", "Beer Sheva", "Bnei Brak", "Holon"];
-  public formRegistrationSecond: FormGroup;
-  public city: FormControl;
-  public street: FormControl;
-  public firstName: FormControl;
-  public lastName: FormControl
+  public formRegistrationSecond: UntypedFormGroup;
+  public city: UntypedFormControl;
+  public street: UntypedFormControl;
+  public firstName: UntypedFormControl;
+  public lastName: UntypedFormControl
 
   constructor(public userRegisterService: UserService, public router: Router) {
 
-    this.city = new FormControl("", Validators.required)
-    this.street = new FormControl("", Validators.required)
-    this.firstName = new FormControl("", Validators.required)
-    this.lastName = new FormControl("", Validators.required)
-    this.formRegistrationSecond = new FormGroup({ city: this.city, street: this.street, firstName: this.firstName, lastName: this.lastName })
+    this.city = new UntypedFormControl("", Validators.required)
+    this.street = new UntypedFormControl("", Validators.required)
+    this.firstName = new UntypedFormControl("", Validators.required)
+    this.lastName = new UntypedFormControl("", Validators.required)
+    this.formRegistrationSecond = new UntypedFormGroup({ city: this.city, street: this.street, firstName: this.firstName, lastName: this.lastName })
   }
 
   ngOnInit(): void {

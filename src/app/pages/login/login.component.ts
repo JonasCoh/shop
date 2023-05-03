@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { observable } from 'rxjs';
 import { CredentialsModel } from 'src/app/models/credentials.model';
@@ -16,15 +16,15 @@ export class LoginComponent implements OnInit {
 
   public productsInStore:number =0;
   public ordersInStore:number = 0;
-  public loginUser!: FormGroup;
-  public userName!: FormControl;
-  public password!: FormControl;
+  public loginUser!: UntypedFormGroup;
+  public userName!: UntypedFormControl;
+  public password!: UntypedFormControl;
   public error: string ="";
 
   constructor(public userOperation: UserService,public router : Router,public marketInfo :MarketService) {
-    this.userName = new FormControl("",[Validators.required,Validators.email]);
-    this.password = new FormControl("",[Validators.required,Validators.minLength(8),Validators.maxLength(12)]);
-    this.loginUser = new FormGroup({userName:this.userName,password: this.password});
+    this.userName = new UntypedFormControl("",[Validators.required,Validators.email]);
+    this.password = new UntypedFormControl("",[Validators.required,Validators.minLength(8),Validators.maxLength(12)]);
+    this.loginUser = new UntypedFormGroup({userName:this.userName,password: this.password});
    }
 
   ngOnInit( ): void {

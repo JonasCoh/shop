@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { GetProduct } from 'src/app/models/GetProduct';
 import { categories } from 'src/app/data/categories';
 import { ProductsService } from 'src/app/services/productService/products.service';
@@ -17,24 +17,24 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class FormUpdateComponent implements OnInit {
 
-  public updateProduct!: FormGroup;
-  public productName!: FormControl;
-  public price!: FormControl;
-  public id!: FormControl;
+  public updateProduct!: UntypedFormGroup;
+  public productName!: UntypedFormControl;
+  public price!: UntypedFormControl;
+  public id!: UntypedFormControl;
   public image: string;
-  public categoryName!: FormControl;
+  public categoryName!: UntypedFormControl;
   public formData: FormData = new FormData();
   public categories: CategoryModel[] = categories;
   public file!: File;
 
   constructor(public productService: ProductsService, public router: Location) {
-    this.productName = new FormControl(this.productService.productToUpdate.productName, Validators.required);
-    this.price = new FormControl(this.productService.productToUpdate.price, [Validators.required, Validators.min(2)]);
-    this.id = new FormControl(this.productService.productToUpdate.id, Validators.required);
+    this.productName = new UntypedFormControl(this.productService.productToUpdate.productName, Validators.required);
+    this.price = new UntypedFormControl(this.productService.productToUpdate.price, [Validators.required, Validators.min(2)]);
+    this.id = new UntypedFormControl(this.productService.productToUpdate.id, Validators.required);
     this.image = this.productService.productToUpdate.image;
-    this.categoryName = new FormControl(categories[0].categoryName)
+    this.categoryName = new UntypedFormControl(categories[0].categoryName)
     this.id.disable()
-    this.updateProduct = new FormGroup({ name: this.productName, price: this.price, id: this.id, });
+    this.updateProduct = new UntypedFormGroup({ name: this.productName, price: this.price, id: this.id, });
   }
 
   ngOnInit(): void {

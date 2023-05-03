@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { observable } from 'rxjs';
 import { categories } from 'src/app/data/categories';
 import { CategoryModel } from 'src/app/models/category.model';
@@ -17,21 +17,21 @@ import { ProductsService } from 'src/app/services/productService/products.servic
 export class FormAddComponent implements OnInit {
 
 
-  public addProduct!: FormGroup;
-  public productName!: FormControl;
-  public category!: FormControl;
-  public price!: FormControl;
-  public image!: FormControl;
+  public addProduct!: UntypedFormGroup;
+  public productName!: UntypedFormControl;
+  public category!: UntypedFormControl;
+  public price!: UntypedFormControl;
+  public image!: UntypedFormControl;
   public formData: FormData = new FormData();
   public categories: CategoryModel[] = categories;
   public file!: File;
 
   constructor(public productService: ProductsService,public router:Location) {
-    this.productName = new FormControl("", [Validators.required]);
-    this.category = new FormControl(categories[0].categoryName);
-    this.price = new FormControl("", [Validators.required, Validators.min(1)]);
-    this.image = new FormControl("", [Validators.required]);
-    this.addProduct = new FormGroup({ productName: this.productName, category: this.category, price: this.price, image: this.image })
+    this.productName = new UntypedFormControl("", [Validators.required]);
+    this.category = new UntypedFormControl(categories[0].categoryName);
+    this.price = new UntypedFormControl("", [Validators.required, Validators.min(1)]);
+    this.image = new UntypedFormControl("", [Validators.required]);
+    this.addProduct = new UntypedFormGroup({ productName: this.productName, category: this.category, price: this.price, image: this.image })
   }
 
   ngOnInit(): void {
